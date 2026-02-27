@@ -1,95 +1,70 @@
 # Event-Ticket-Platform
-A role-based Event Ticket Booking & Validation System that enables users to browse and book tickets, organizers to create and manage events, staff to validate QR tickets, and admins to oversee the platform.
+Event-Ticket-Platform is a comprehensive role-based Event Ticket Booking & Validation System that enables seamless event management and secure ticketing. It allows users to browse and book tickets, organizers to create and manage events, staff to validate tickets via QR codes, and administrators to oversee the platform.
+This full-stack application combines robust backend services with an interactive frontend and is fully containerized using Docker for consistent deployment.
 
-This project includes both backend and frontend components, with secure authentication and real-time QR code validation.
+# 🚀 Key Features
 
-🚀 Features
-✅ User Role
+# ✅ User :
+Register, login, and manage account
+Browse and search events
+View detailed event information
+Book tickets and receive QR-coded tickets
+Access personal booking history
 
-Register & login
+# 🎤 Organizer
+Create, update, and manage events
+Control ticket availability and allocations
+Track event bookings and analytics
+Assign staff to manage on-site ticket validation
 
-Browse available events
+# 🛂 Staff
+Scan and validate tickets via QR codes at event entrances
+Verify ticket authenticity and prevent duplicates
+Mark tickets as USED in real time
+Ensure secure and efficient event entry
 
-View event details
-Book tickets
+# 🛡️ Admin
+Manage all users, roles, and permissions
+Oversee all events and bookings
+Monitor platform activity and generate reports
+Maintain full control over system operations
 
-Receive QR-coded tickets
+# 🗺️ Architecture Overview
 
-View booking history
-
-🎤 Organizer Role
-
-Create new events
-
-Edit/Update own events
-
-Manage ticket availability
-
-View bookings for events they created
-Login with staff credentials
-
-Scan scanned tickets’ QR codes at event entrance
-
-Validate ticket legitimacy
-
-Mark tickets as used
-
-Prevent reused or fraudulent access
-
-🛡️ Admin Role
-
-Manage all users & roles
-
-Manage all events
-
-View all tickets and bookingsFull platform control
-
-🗺️ Architecture Overview
-
-This project uses a full-stack architecture with distinct frontend and backend:
-
-Frontend: TypeScript (React/Vue/Angular depending on your implementation)
-
-Backend: Java Spring Boot (REST API)
-
+This platform follows a modern full-stack architecture:
+Frontend: TypeScript with React / Vue / Angular
+Backend: Java Spring Boot (RESTful API)
 Authentication: JWT (JSON Web Tokens)
-
 Authorization: Role-based access control (User, Organizer, Staff, Admin)
+Database: PostgreSQL
+Containerization: Docker & Docker Compose for isolated, reproducible environments
 
-Database: Relational database (e.g., MySQL/PostgreSQL)
+# QR Code Validation
+Each ticket is assigned a unique, encrypted QR code, which staff scan at the event. The backend verifies the ticket, checks usage status, and marks it USED upon validation to prevent fraud or duplicate entry.
 
-QR Code Validation: Unique encrypted QR for each ticket, scanned and verified by staff
-🧠 How QR Validation Works
+# 🧠 Ticket Validation Workflow
+User books a ticket.
+Backend generates a unique ticket ID and QR code.
+QR code contains encrypted ticket details.
+Staff scans the QR code at the venue.
 
-A user books a ticket.
+Backend verifies:
+Ticket exists and matches the event and user
+Ticket has not been used previously
+Valid tickets are marked USED, granting entry.
+Duplicate or invalid scans are rejected, ensuring secure validation.
 
-The backend generates a unique ticket ID and QR code.
+# 🔐 Security Implementation
+JWT-based stateless authentication
+Role-based access control to enforce permissions
+Passwords hashed using BCrypt for security
+Endpoint protection via middleware and method-level authorization
+Input validation and global exception handling
 
-The QR code encodes encrypted ticket information.
+# 🐳 Docker Deployment
+The platform is fully containerized, enabling seamless development and deployment:
+Backend (Spring Boot)
 
-At the event entrance, a Staff user scans the QR.
+Frontend (React)
 
-The backend verifies:
-
-The ticket is valid
-
-The ticket belongs to that event and user
-
-The ticket hasn’t been used before
-
-If valid, the ticket is marked USED and entry allowed.
-
-Duplicate or invalid scans are rejected.
-🔐 Security & Roles
-
-JWT Authentication secures all API endpoints.
-
-Role-Based Authorization controls access per endpoint.
-
-Sensitive data (passwords) is hashed using BCrypt.
-
-Endpoints are protected by middleware and method-level permissions.
-
-Assign staff to assist at events
-
-🛂 Staff Role
+PostgreSQL Database
